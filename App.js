@@ -7,7 +7,7 @@ import Animated, {
 import { View, Button } from "react-native";
 
 export default function AnimatedStyleUpdateExample(props) {
-  const randomWidth = useSharedValue(10);
+  const randomWidth = useSharedValue(100);
 
   const config = {
     duration: 500,
@@ -31,7 +31,7 @@ export default function AnimatedStyleUpdateExample(props) {
     >
       <Animated.View
         style={[
-          { width: 100, height: 80, backgroundColor: "black", margin: 30 },
+          { width: 100, height: 80, backgroundColor: "blue", margin: 30 },
           style,
         ]}
       />

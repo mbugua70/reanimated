@@ -1,4 +1,10 @@
 {
   "name": "react_reanimated",
-  "slug": "react_reanimated"
+  "slug": "react_reanimated",
+  "android": {
+    "package": "com.mbugua_code.react_reanimated"
+  },
+  "ios": {
+    "bundleIdentifier": "com.mbugua-code.react-reanimated"
+  }
 }
