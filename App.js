@@ -8,6 +8,7 @@ import Animated, {
 import { View, Button, StyleSheet, ScrollView } from "react-native";
 import AnimatingStyled from "./component/animatingStyled";
 import CustomizeStyle from "./component/CustomizeStyle";
+import Modifiers from "./component/Modifiers";
 
 export default function AnimatedStyleUpdateExample(props) {
   const width = useSharedValue(100);
@@ -19,25 +20,28 @@ export default function AnimatedStyleUpdateExample(props) {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.screen}>
         <View
-          style={{
+          style={[{
             marginVertical: 20,
             alignItems: "center",
             justifyContent: "center",
             flexDirection: "column",
-          }}>
+          }, styles.container]}>
           {/* <Animated.View style={{ width, backgroundColor: 'red', height: 150 }} /> */}
           <Animated.View
             style={Object.assign(Object.assign({}, styles.box), { width })}
           />
           <Button onPress={handlePress} title='toggle' />
         </View>
-        <View>
+        <View style={styles.container}>
           <AnimatingStyled />
         </View>
-        <View>
+        <View style={styles.container}>
           <CustomizeStyle width={200} />
+        </View>
+        <View style={styles.container}>
+          <Modifiers />
         </View>
       </ScrollView>
     </>
@@ -45,11 +49,20 @@ export default function AnimatedStyleUpdateExample(props) {
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    // flex: 1,
+    paddingBottom: 150,
+  },
   box: {
     borderRadius: 12,
     backgroundColor: "green",
     height: 150,
   },
+
+  container: {
+    width: '100%'
+  }
+
 });
 // shared value is a deriving factor in react animation, act like react state which is used to keep sync automatically between the javascript and the native features.
 
