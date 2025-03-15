@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
   withTiming,
@@ -6,9 +7,11 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { View, Button, StyleSheet, ScrollView } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AnimatingStyled from "./component/animatingStyled";
 import CustomizeStyle from "./component/CustomizeStyle";
 import Modifiers from "./component/Modifiers";
+import Gestures from './component/Gestures';
 
 export default function AnimatedStyleUpdateExample(props) {
   const width = useSharedValue(100);
@@ -20,30 +23,38 @@ export default function AnimatedStyleUpdateExample(props) {
 
   return (
     <>
-      <ScrollView contentContainerStyle={styles.screen}>
-        <View
-          style={[{
-            marginVertical: 20,
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-          }, styles.container]}>
-          {/* <Animated.View style={{ width, backgroundColor: 'red', height: 150 }} /> */}
-          <Animated.View
-            style={Object.assign(Object.assign({}, styles.box), { width })}
-          />
-          <Button onPress={handlePress} title='toggle' />
-        </View>
-        <View style={styles.container}>
-          <AnimatingStyled />
-        </View>
-        <View style={styles.container}>
-          <CustomizeStyle width={200} />
-        </View>
-        <View style={styles.container}>
-          <Modifiers />
-        </View>
-      </ScrollView>
+      <GestureHandlerRootView>
+        <ScrollView contentContainerStyle={styles.screen}>
+          <View
+            style={[
+              {
+                marginVertical: 20,
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+              },
+              styles.container,
+            ]}>
+            {/* <Animated.View style={{ width, backgroundColor: 'red', height: 150 }} /> */}
+            <Animated.View
+              style={Object.assign(Object.assign({}, styles.box), { width })}
+            />
+            <Button onPress={handlePress} title='toggle' />
+          </View>
+          <View style={styles.container}>
+            <AnimatingStyled />
+          </View>
+          <View style={styles.container}>
+            <CustomizeStyle width={200} />
+          </View>
+          <View style={styles.container}>
+            <Modifiers />
+          </View>
+          <View>
+             <Gestures />
+          </View>
+        </ScrollView>
+      </GestureHandlerRootView>
     </>
   );
 }
@@ -60,9 +71,8 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    width: '100%'
-  }
-
+    width: "100%",
+  },
 });
 // shared value is a deriving factor in react animation, act like react state which is used to keep sync automatically between the javascript and the native features.
 
